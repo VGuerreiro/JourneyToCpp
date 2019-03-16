@@ -1,0 +1,30 @@
+{
+    // See https://go.microsoft.com/fwlink/?LinkId=733558
+    // for the documentation about the tasks.json format
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "verify",
+            "type": "shell",
+            "command": "if",
+            "args": ["exist","${fileDirname}\\build","rd","/s","/q","${fileDirname}\\build"],
+            "group": {"kind": "build", "isDefault": true }
+        },
+        {
+            "label": "newfolder",
+            "type": "shell",
+            "dependsOn":["verify"],
+            "command": "mkdir",
+            "args": ["${fileDirname}\\build"],
+            "group": {"kind": "build", "isDefault": true }
+        },
+        {
+            "label": "gcc_build",
+            "type": "shell",
+            "dependsOn":["newfolder"],
+            "command": "g++",
+            "args": ["-g","${relativeFile}","-o","${fileDirname}/build/${fileBasenameNoExtension}.exe"],
+            "group": {"kind": "build","isDefault": true},
+        },
+    ]
+}

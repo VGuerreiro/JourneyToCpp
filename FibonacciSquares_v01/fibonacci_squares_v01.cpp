@@ -45,8 +45,10 @@ int main()
             std::cout << std::endl;
         }
     }
+    if (MAXSIDE_L < 0)
+    {
     std::cout<<"Please insert only positive values.\n";
-
+    }
     system("pause");
     return 0;
 }
